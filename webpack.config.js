@@ -9,9 +9,18 @@ module.exports = {
   },
   module: {
     rules: [{
-      loader: 'babel-loader',
       test: /\.js$/,
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            '@babel/preset-env',
+            '@babel/preset-react'
+          ],
+          plugins: ["@babel/plugin-proposal-class-properties"]
+        }
+      }]
     }, {
       test: /\.s?css$/,
       use: [
